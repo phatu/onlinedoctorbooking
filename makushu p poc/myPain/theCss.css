@@ -1,0 +1,11 @@
+body{
+	repeat: no-repeat;
+    background-color: peachpuff;
+    border-style: double;
+    border-color: darkgoldenrod;
+}
+
+#show td{
+border-style: double;
+    border-color: darkgoldenrod;
+	}
