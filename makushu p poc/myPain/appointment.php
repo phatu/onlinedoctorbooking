@@ -15,7 +15,7 @@
         <table align="center">
                         <tr>
                             <td><img src="logo.jpg" width="200" height="200px"></td>
-                            <td><h1>YOUR PAIN IS MY PAIN TO FIX</h1></td>
+                            <td><h1>YOUR PAIN IS MY PAIN TO TREAT</h1></td>
                         </tr>
                     </table>
 					<center>

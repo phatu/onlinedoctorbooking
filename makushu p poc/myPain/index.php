@@ -98,22 +98,22 @@
                 </tr>
                 <tr>
                     <td>FIRST NAME</td>
-                    <td><input type="text" name="fname" required></td>
+                    <td><input type="text" name="fname" title="Please fill in your first name" required></td>
                 </tr>
                 <tr>
                     <td>LAST NAME</td>
-                    <td><input type="text" name="lname" required></td>
+                    <td><input type="text" name="lname" title="Please fill in your last name" required></td>
                 </tr>
                 <tr>
                     <td>CELL NUMBER</td>
-                    <td><input type="tel" name="cell" maxlength="10" required></td>
+                    <td><input type="tel" name="cell" maxlength="10" title="Please fill in your cell number" required></td>
                 </tr>
                 <tr>
                     <td>PASSWORD</td>
-                    <td><input type="password" name="password" required></td>
+                    <td><input type="password" name="password" title="Please fill in your password" required></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="REGISTER" name="register"></td>
+                    <td><input type="submit" value="REGISTER" name="register" title="Click To Register"></td>
                 </tr>
             </table>
         </form>
@@ -128,15 +128,15 @@
 
                 <tr>
                     <td>CELL NUMBER</td>
-                    <td><input type="tel" name="celln" maxlength="10" required></td>
+                    <td><input type="tel" name="celln" maxlength="10" title="Please fill in your registered cell number" required></td>
                 </tr>
 
                 <tr>
                     <td>PASSWORD</td>
-                    <td><input type="password" name="password1" required></td>
+                    <td><input type="password" name="password1" title="Please fill in your rgistered password" required></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="LOGIN" name="login"></td>
+                    <td><input type="submit" value="LOGIN" name="login" title="Click To Login"></td>
                 </tr>
             </table>
         </form>

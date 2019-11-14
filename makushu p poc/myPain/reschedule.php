@@ -32,17 +32,19 @@
 				?>
 					<!--reschedule form for user -->	 
 			  <center>
-				<form name="f" action="change.php" method="POST">
+                              <form action="" method="POST">
 					<table align="center">
 						
-						<tr><td>DATE AND TIME</td></tr>
-						<tr><td>Your scheduled date and time</td><td><label name="old"><?php $old = $row['dateAndTime']; echo $old; ?></label></td></tr>
+                                            <tr><td><b>DATE AND TIME</b></td></tr>
+                                            <tr><td><b>Your scheduled date and time</b></td>
+                                                    <td><label name="old"><?php $old = $row['dateAndTime']; echo $old; ?></label></td></tr>
 
 						<tr>
-						<tr><td>NEW DATE AND TIME</td>
+                                                <tr><td><b>NEW DATE AND TIME</b></td>
 						<td>
+                                                                                                        
 				<select name="dt">
-				  <option>SELECT DATE AND TIME</option>
+				  <option value="selectDateAndTime">SELECT DATE AND TIME</option>
 				<?php
 
 				for($count =0; $count<15; $count++){
@@ -72,16 +74,15 @@
 			</td>
 		</tr>
 
-		<tr><td>REASON</td>
-			<td><input type="text" name="rsn" value="<?php echo $row['reason']; ?>" /></td></tr>
+                <tr><td><b>REASON</b></td>
+                    <td><label><?php echo $row['reason']; ?></label></td></tr>
 
-		<tr><td colspan="2" align="center"><p class="button-style"><input type="submit"  class="is" id="x"  title="Click To Update"  name="reschedule" value="RESCHEDULE APPOINTMENT" align="center" class="cls1"/></p></td></tr>
+		<tr><td colspan="2" align="center"><p class="button-style"><input type="submit" title="Click To Reschedule"  name="reschedule" value="RESCHEDULE APPOINTMENT" align="center"/></p></td></tr>
 
 		</table>
 		</form>
 				  
-				  <?php echo $old;
-				?>
+				 	
 									</div> 
 						</div>
 					</div>
@@ -90,9 +91,41 @@
 	</html>
 
 	<?php
+        
 	}
-	else
-	{
-		header('location:details.php');
-	}
+        
 	?>
+
+        
+        <?php 
+    
+                    $dt= $_POST['dt'];                      	
+			 
+			$sql="UPDATE book SET dateAndTime='$dt' WHERE dateAndTime='$old'";
+			$rescheduled = mysql_query($sql);
+			
+			   if($rescheduled)
+			{
+
+				 // echo "<script>alert('Your appointment has been successfully rescheduled.');window.location='details.php';</script>";
+			}
+			else
+			{
+					 echo "<script>alert('Your appointment has not been rescheduled. Please try again.');window.location='details.php';</script>";
+				}
+		?>
+
+        <table align="center">
+		<tr>
+            <td>
+                <a href="details.php">BACK TO DETAILS</a>
+            </td>
+        </tr>
+		<tr>
+			<td>
+				<a href="index.php">LOGOUT</a>
+			</td>
+		</tr>
+		</table>
+
+ <h3>Designed by Phatutshedzo Makushu</h3></center>

@@ -2,7 +2,6 @@
 
 	//page with database basics included
     include 'db.php';
-	
 		//session starts
           session_start();
           $sess_user = $_SESSION['sess_user'];
@@ -10,17 +9,22 @@
           //rescheduling user appointment
           if(isset($_POST['reschedule'])){
                     $cell = $sess_user;
+                    $dt= $_POST['dt'];
 			}
-           $dt= $_POST['dt'];
-           $rsn=$_POST['rsn'];
-           $old=$_POST['old'];
+           
+                        $s1 = mysql_query("SELECT dateAndTime from book where cell = '$sess_user'");
+                        $row= mysql_fetch_array($s1);
+                        $old = $row['dateAndTime'];
+					//$fcout=mysql_num_fields($s);
+					
 			 
-			$sql="UPDATE book SET dateAndTime='$dt', reason='$rsn' WHERE dateAndTime='$old'";
+			$sql="UPDATE book SET dateAndTime='$dt' WHERE dateAndTime='$old'";
 			$s = mysql_query($sql);
 			
 			   if($s)
 			{
-				  echo "<script>alert('Your Information successfully! HAS Been CHanged ');window.location='details.php';</script>";
+                               echo 'the change is ' . $old;
+				 // echo "<script>alert('Your Information successfully! HAS Been CHanged ');window.location='details.php';</script>";
 			}
 			else
 			{

@@ -49,18 +49,16 @@
 
             <h2>HERE ARE YOUR APPOINTMENTS</h2>
             <br/>
-
-
-            <form method='POST' name='form' id='form' action='cancelAppointment.php'>
+            
+                        <!-- form that displays patient bookings -->
+            <form method='POST' name='form' id='form' action='cancelAppointment.php' onsubmit='confirmdelete()'>
                 <table align="center" id="show">
-                    <tr>
-                        
+                    <tr>              
                             <td><b>DATE AND TIME</b></th>
                             <td><b>REASON FOR APPOINTMENT</b></td>
                             <td><b>RESCHEDULE APPOINTMENT</b></td>
-                            <td><b>DELETE</b></td>
+                            <td><b><input type='submit' value='DELETE' name='delete'></b></td>
                     </tr>
-
 
                         <?php
                             $reveal = "SELECT * FROM book WHERE cell = '$sess_user'";
@@ -71,16 +69,14 @@
                             <td> <?php echo $display['dateAndTime']; ?> </td>
                             <td> <?php echo $display['reason']; ?> </td>                
                                  <?php echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</a></td>
-
-
                         <?php 
-
-                            $countFields=mysql_num_fields($result1);
-                        
-                                for($a=2;$a<$countFields-1;$a++) {
-                                    echo "<td>$countFields[$a]";
-                                }
-                                  echo "<input type='submit' value='DELETE' name='delete'  onclick='confirmdelete()'></td>";
+                                
+        
+                 $id1=$display[3];
+            
+               echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=$id1></td>";
+        
+        
                                    
                             }
                         ?>
@@ -105,6 +101,11 @@
 				</tr>
 			</center>
 			
+    
+    
+
+            
+            </table>
         <?php 
         if(!isset($_COOKIE['loggedin']))
         {
@@ -112,7 +113,7 @@
         }
         ?>     
 
-
+            <script src="confirmDelete.js"></script>
     </body>
 </html>
 
