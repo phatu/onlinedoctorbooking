@@ -8,61 +8,75 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css.css">
         <link rel="stylesheet" href="theCss.css">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-			<!--logo and slogan-->
+        <!--logo and slogan-->
 
         <table align="center">
-                        <tr>
-                            <td><img src="logo.jpg" width="200" height="200px"></td>
-                            <td><h1>YOUR PAIN IS MY PAIN TO TREAT</h1></td>
-                        </tr>
-                    </table>
-					<center>
+            <tr>
+                <td><img src="logo.jpg" width="200" height="200px"></td>
+                <td><h1>YOUR PAIN IS MY PAIN TO FIX</h1></td>
+            </tr>
+        </table>
+    <center>
         <?php
-		
-					//page with database basics included
+        //page with database basics included
         include 'db.php';
+
 		
-		//starting session
+
+
+        //starting session
         session_start();
         $sess_user = $_SESSION['sess_user'];
 
-        $logged = "SELECT * FROM register WHERE cell = '$sess_user'";
-        $res1 = mysql_query($logged);
-        
-		//getting name from register database
-        while($disp = mysql_fetch_array($res1)) {
-            $fname = $disp['fname'];
-        }
-        
-		
-		//getting data from the appointment form
-        if(isset($_POST["book"])){ 
+
+        $query = $mysqli->query("SELECT * FROM register WHERE cell = '$sess_user'") or
+                die($mysqli->error);
+        $numrows = $query->fetch_array();
+
+        //getting name from register database
+        $fname = $numrows['fname'];
+
+
+
+        //getting data from the appointment form
+        if (isset($_POST["book"])) {
             $cell = $sess_user;
             $dateAndTime = $_POST["dateAndTime"];
             $reason = $_POST["reason"];
-			
-			//validating user input
-			if($dateAndTime == "selectdatetime"){
-				echo "<script>alert('Please select date for appointment')</script>";
-			} else if($reason == "selectReason"){
-				echo "<script>alert('Please select reason for appointment')</script>";
-			} else {
-            $sql = "INSERT INTO book(cell, dateAndTime, reason) VALUES('$cell', '$dateAndTime', '$reason')";
-            $result = mysql_query($sql);
 
-            if($result){
-                echo "Thank you $fname for booking";    
-                
+            //validating user input
+            if ($dateAndTime == "selectdatetime") {
+                echo "<script>alert('Please select date for appointment')</script>";
+            } else if ($reason == "selectReason") {
+                echo "<script>alert('Please select reason for appointment')</script>";
             } else {
-                echo 'Failed to book, please try again '; 
+               
+                $mysqli->query("INSERT INTO book(cell, dateAndTime, reason) VALUES('$cell', '$dateAndTime', '$reason')") or
+                        die($mysqli->error);
+                
+
+                   echo "Thank you $fname for booking";
+
+                
+                
+                
+               // if ($result) {
+                //    echo "Thank you $fname for booking";
+               // } else {
+              //      echo 'Failed to book, please try again ';
+               // }
             }
-			}
         }
         ?>
 
-		<!--user appointment form-->
+        <!--user appointment form-->
         <form action="" method="POST">
             <table>
                 <tr><td><h2>PLEASE DO YOUR BOOKING HERE</h2></td></tr>
@@ -71,31 +85,38 @@
                     <td>
                         <select name="dateAndTime">
                             <option value="selectdatetime">SELECT DATE AND TIME</option>
-                                <?php
-                                for($count =0; $count<15; $count++){
-                                $days = date('l jS F Y ',strtotime($count . 'days'));
-                                $startTime = strtotime('09:00');
-                                
-                                    for($a=0;$a<451; $a+=30){
-                                        $timeDisplay = date('H:i', strtotime($a .'minutes', $startTime));  
-                                        $dateTmeDisplay = $days . $timeDisplay;
-                                        $reveal = "SELECT dateAndTime FROM book";
-                                        $ann = mysql_query($reveal);
+<?php
+for ($count = 0; $count < 15; $count++) {
+    $days = date('l jS F Y ', strtotime($count . 'days'));
+    $startTime = strtotime('09:00');
 
-                                        while($display = mysql_fetch_array($ann)) {
-                                            $fin = $display['dateAndTime']; 
-                                            if($dateTmeDisplay == $fin){ 
-                                                $dateTmeDisplay = "unavailable";
-                                            }
-                                        }
+    for ($a = 0; $a < 451; $a += 30) {
+        $timeDisplay = date('H:i', strtotime($a . 'minutes', $startTime));
+        $dateTmeDisplay = $days . $timeDisplay;
+        
+        
+        
+        $query = $mysqli->query("SELECT dateAndTime FROM book") or
+                die($mysqli->error);
+        $numrows = $query->fetch_array();
 
-                                        if($dateTmeDisplay == "unavailable"){?>
-                                            <option value="<?php echo $dateTmeDisplay;?>" disabled><?php echo $dateTmeDisplay;?></option>
-                                        <?php }else {?>
-                                            <option value="<?php echo $dateTmeDisplay;?>"><?php echo $dateTmeDisplay;
-                                        }
-                                    }
-                                }?></option>
+
+            $dbDateAndTime = $numrows['dateAndTime'];
+            if ($dateTmeDisplay == $dbDateAndTime) {
+                $dateTmeDisplay = "unavailable";
+            }
+        
+
+        if ($dateTmeDisplay == "unavailable") {
+            ?>
+                                        <option value="<?php echo $dateTmeDisplay; ?>" disabled><?php echo $dateTmeDisplay; ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $dateTmeDisplay; ?>"><?php
+                            echo $dateTmeDisplay;
+                        }
+                    }
+                }
+                            ?></option>
                         </select>
                     </td>
                 </tr>
@@ -130,18 +151,31 @@
                 </tr>
             </table>
         </form>
-		
-		<table align="center">
-		<tr>
-            <td>
-                <a href="details.php">BACK TO DETAILS</a>
-            </td>
-        </tr>
-		<tr>
-			<td>
-				<a href="index.php">LOGOUT</a>
-			</td>
-		</tr>
-		</table>
 
- <h3>Designed by Phatutshedzo Makushu</h3></center>
+        
+        
+      
+        
+        <div class="container fixed-bottom">
+            <nav class="navbar navbar-dark bg-dark">
+
+
+                <div class="btn-group dropup">
+                    <a href="details.php">BACK TO DETAILS</a>
+
+
+                </div>
+
+                <div class="btn-group dropup">
+                    <a href="index.php">LOGOUT</a>
+
+                </div>
+
+
+            </nav>  
+        </div>
+
+        
+        
+        
+        <h3>Designed by Phatutshedzo Makushu</h3></center>
