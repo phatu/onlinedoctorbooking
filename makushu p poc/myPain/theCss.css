@@ -1,11 +1,19 @@
-body{
-	repeat: no-repeat;
-    background-color: peachpuff;
-    border-style: double;
-    border-color: darkgoldenrod;
+
+body {
+ background-image: url('/images/background.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: gray;
+}
+
+#show, #appointment, #reschedule, #cancel {
+      background-color: white;
 }
 
 #show td{
 border-style: double;
     border-color: darkgoldenrod;
-	}
+}
+        

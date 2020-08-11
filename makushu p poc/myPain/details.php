@@ -16,12 +16,7 @@
     </head>
     <body>
 
-        <table align="center">
-            <tr>
-                <td><img src="logo.jpg" width="200" height="200px"></td>
-                <td><h1>YOUR PAIN IS MY PAIN TO FIX</h1></td>
-            </tr>
-        </table>
+       
     <center>
         <?php
         //page with database basics included
@@ -54,34 +49,33 @@
         <br/>
 
         <!-- form that displays patient bookings -->
-        <form method='POST' name='form' id='form' action='cancelAppointment.php' onsubmit='confirmdelete()'>
+        <form method='POST' action='cancelAppointment.php' onsubmit='confirmdelete()'>
             <table align="center" id="show">
                 <tr>              
-                    <td><b>DATE AND TIME</b></th>
-                    <td><b>REASON FOR APPOINTMENT</b></td>
-                    <td><b>RESCHEDULE APPOINTMENT</b></td>
-                    <td><b><input type='submit' value='DELETE' name='delete'></b></td>
+                    <th>DATE AND TIME</th>
+                    <th>REASON FOR APPOINTMENT</th>
+                    <th>RESCHEDULE APPOINTMENT</th>
+                    <th style="padding-left: 20px">DELETE APPOINTMENT</th>
                 </tr>
 
-<?php
-$result = $mysqli->query("SELECT * FROM book WHERE cell='$sess_user'") or die($mysql->error);
+                <?php
+                $result = $mysqli->query("SELECT * FROM book WHERE cell='$sess_user'") or die($mysql->error);
 
-while ($display = $result->fetch_assoc()):
-    ?>
+                while ($display = $result->fetch_assoc()):
+                    ?>
                     <tr>
                         <td> <?php echo $display['dateAndTime']; ?> </td>
                         <td> <?php echo $display['reason']; ?> </td>                
-    <?php echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</a></td>
-                    <?php
-                    $id1 = $numrows[3];
+                        <?php echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</a></td>
+                        <?php echo "<td><a href='cancelAppointment.php?dateAndTime={$display['dateAndTime']}'>"; ?>DELETE</a></td>
 
-                    echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=$id1></td>";
-
-                endwhile;
-                ?>
+                        <?php
+                    endwhile;
+                    ?>
                 </tr>  					
             </table>
         </form>
+
 
 
 
@@ -117,5 +111,6 @@ if (!isset($_COOKIE['loggedin'])) {
         <script src="confirmDelete.js"></script>
     </body>
 </html>
+
 
 
