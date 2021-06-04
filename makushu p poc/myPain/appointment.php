@@ -35,8 +35,9 @@
 
             //getting name from register database
             $fname = $numrows['fname'];
-
-
+            $lname = $numrows['lname'];
+            
+            $fullName = $fname . ' ' . $lname;
 
             //getting data from the appointment form
             if (isset($_POST["book"])) {
@@ -51,20 +52,24 @@
                     echo "<script>alert('Please select reason for appointment')</script>";
                 } else {
 
-                    $mysqli->query("INSERT INTO book(cell, dateAndTime, reason) VALUES('$cell', '$dateAndTime', '$reason')") or
+                    $mysqli->query("INSERT INTO book(cell, dateAndTime, reason, name) VALUES('$cell', '$dateAndTime', '$reason', '$fullName')") or
                             die($mysqli->error);
 
 
                        echo "Thank you $fname for booking";
 
 
+                       
+                        if ($mysqli) {
 
-
-                    if ($mysqli) {
-                        echo "Thank you $fname for booking";
-                   } else {
-                        echo 'Failed to book, please try again ';
+                        echo "<script>alert('Thank you $fname for booking');window.location='details.php';</script>";
+                    } else {
+                        echo "<script>alert('Failed to book, please try again. Please try again.');window.location='details.php';</script>";
                     }
+
+
+                  
+                    
                 }
             }
             ?>
@@ -98,7 +103,8 @@
                         if ($dateTmeDisplay == $dbDateAndTime) {
                             $dateTmeDisplay = "unavailable";
                         }
-
+                        
+                       
 
                     if ($dateTmeDisplay == "unavailable") {
                 ?>

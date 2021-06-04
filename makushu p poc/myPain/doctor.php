@@ -32,6 +32,7 @@
                     <th style="padding-right: 200px">BOOKING ID</th>
                     <th style="padding-right: 200px">DATE AND TIME</th>
                     <th>REASON FOR APPOINTMENT</th>
+                    <th>PATIENT</th>
                 </tr>
 
                 <?php
@@ -43,6 +44,7 @@
                         <td> <?php echo $display['id']; ?> </td>
                         <td> <?php echo $display['dateAndTime']; ?> </td>
                         <td> <?php echo $display['reason']; ?> </td>
+                        <td> <?php echo $display['name']; ?> </td>
                         <?php
                     endwhile;
                     ?>
