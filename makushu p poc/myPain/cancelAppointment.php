@@ -51,7 +51,7 @@
                                 <td><label><?php echo $reason ?></label></td>
                             </tr>
 
-                            <tr><td colspan="2" align="center"><p class="button-style"><input type="submit" title="Click To Reschedule"  name="delete" value="DELETE APPOINTMENT" align="center"/></p></td></tr>
+                            <tr><td colspan="2" align="center"><p class="button-style"><input type="submit" title="Click To Delete"  name="delete" value="DELETE APPOINTMENT" align="center"/></p></td></tr>
 
                         </table>
                     </form>

@@ -61,8 +61,8 @@
                     <tr>
                         <td> <?php echo $display['dateAndTime']; ?> </td>
                         <td> <?php echo $display['reason']; ?> </td>                
-                        <?php echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</a></td>
-                        <?php echo "<td><a href='cancelAppointment.php?dateAndTime={$display['dateAndTime']}'>"; ?>DELETE</a></td>
+                        <?php echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</a>
+                        <?php echo "<td><a href='cancelAppointment.php?dateAndTime={$display['dateAndTime']}'>"; ?>DELETE</a>
 
                         <?php
                     endwhile;

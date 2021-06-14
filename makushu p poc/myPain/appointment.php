@@ -96,7 +96,7 @@
                     $dateTmeDisplay = $days . $timeDisplay;
 
 
-//double booking prevention
+//double booking prevention and if time has passed, slot is unavailable
    $query = $mysqli->query("SELECT * FROM book WHERE dateAndTime='$dateTmeDisplay'") or
                     die($mysqli->error);
 
@@ -107,8 +107,14 @@
 
                }
 
-                if ($dbDateAndTime == $dateTmeDisplay) {
-                   
+               
+               $today = date('l jS F Y ');
+               $timeRightNow = date('H:i');
+               
+                if ($dbDateAndTime == $dateTmeDisplay || ($today == $days  && $timeRightNow >= $timeDisplay)){
+                             
+                    $dateTmeDisplay = $days . $timeDisplay;
+                     
   
                 ?>
                                             <option value="unavailable" disabled>unavailable</option>
