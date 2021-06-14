@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
     </head>
     <body>
         
@@ -63,7 +64,7 @@
                        
                         if ($mysqli) {
 
-                        echo "<script>alert('Thank you $fname for booking');window.location='details.php';</script>";
+                        echo "<script>alert('Thank you $fname for booking');window.location='calendar.php';</script>";
                     } else {
                         echo "<script>alert('Failed to book, please try again. Please try again.');window.location='details.php';</script>";
                     }
@@ -73,6 +74,8 @@
                     
                 }
             }
+            
+        
             ?>
 
             <!--user appointment form-->
@@ -162,6 +165,12 @@
             </form>
 
 
+            
+            
+
+
+            
+            
             <div class="container fixed-bottom">
                 <nav class="navbar navbar-dark bg-dark">
 

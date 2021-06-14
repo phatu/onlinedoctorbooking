@@ -26,7 +26,7 @@
         session_start();
         $sess_user = $_SESSION['sess_user'];
 
-        //getting data from register database
+        //getting data from register table
         $query = $mysqli->query("SELECT * FROM register WHERE cell = '$sess_user'") or
                 die($mysqli->error);
         $numrows = $query->fetch_array();
@@ -99,7 +99,6 @@
 
    
 
-        <script src="confirmDelete.js"></script>
     </body>
 </html>
 
