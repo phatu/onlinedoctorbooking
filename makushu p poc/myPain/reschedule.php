@@ -64,7 +64,7 @@
 
                                         for ($a = 0; $a < 451; $a += 30) {
                                             $timeDisplay = date('H:i', strtotime($a . 'minutes', $startTime));
-                                            $dateTmeDisplay = $days . $timeDisplay;
+                                            $dateTimeDisplay = $days . $timeDisplay;
 
 
 
@@ -75,17 +75,17 @@
                                             $dbDateAndTime = $numrows['dateAndTime'];
                                             $reason = $numrows['reason'];
 
-                                            if ($dateTmeDisplay == $dbDateAndTime) {
-                                                $dateTmeDisplay = "unavailable";
+                                            if ($dateTimeDisplay == $dbDateAndTime) {
+                                                $dateTimeDisplay = "unavailable";
                                             }
 
 
-                                            if ($dateTmeDisplay == "unavailable") {
+                                            if ($dateTimeDisplay == "unavailable") {
                                                 ?>
-                                                <option value="<?php echo $dateTmeDisplay; ?>" disabled><?php echo $dateTmeDisplay; ?></option>
+                                                <option value="<?php echo $dateTimeDisplay; ?>" disabled><?php echo $dateTimeDisplay; ?></option>
                                             <?php } else { ?>
-                                                <option value="<?php echo $dateTmeDisplay; ?>"><?php
-                                                    echo $dateTmeDisplay;
+                                                <option value="<?php echo $dateTimeDisplay; ?>"><?php
+                                                    echo $dateTimeDisplay;
                                                 }
                                             }
                                         }

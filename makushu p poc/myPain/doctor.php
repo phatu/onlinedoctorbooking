@@ -33,6 +33,7 @@
                     <th style="padding-right: 200px">DATE AND TIME</th>
                     <th>REASON FOR APPOINTMENT</th>
                     <th>PATIENT</th>
+                    <th>SEEN</th>
                 </tr>
 
                 <?php

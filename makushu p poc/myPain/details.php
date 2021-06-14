@@ -102,11 +102,7 @@
 
 
 
-<?php
-if (!isset($_COOKIE['loggedin'])) {
-    header("location:index.php");
-}
-?>     
+   
 
         <script src="confirmDelete.js"></script>
     </body>

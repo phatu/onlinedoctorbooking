@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -55,7 +56,7 @@
                     $mysqli->query("INSERT INTO book(cell, dateAndTime, reason, name) VALUES('$cell', '$dateAndTime', '$reason', '$fullName')") or
                             die($mysqli->error);
 
-
+                    
                        echo "Thank you $fname for booking";
 
 
@@ -84,6 +85,8 @@
                             <select name="dateAndTime">
                                 <option value="selectdatetime">SELECT DATE AND TIME</option>
             <?php
+                            $result = $mysqli->query("SELECT * FROM book") or die($mysql->error);
+
             for ($count = 0; $count < 15; $count++) {
                 $days = date('l jS F Y ', strtotime($count . 'days'));
                 $startTime = strtotime('09:00');
@@ -94,27 +97,28 @@
 
 
 
-                    $query = $mysqli->query("SELECT dateAndTime FROM book") or
-                            die($mysqli->error);
-                    $numrows = $query->fetch_array();
+   $query = $mysqli->query("SELECT * FROM book WHERE dateAndTime='$dateTmeDisplay'") or
+                    die($mysqli->error);
 
+            $numrows = $query->fetch_array();
 
-                        $dbDateAndTime = $numrows['dateAndTime'];
-                        if ($dateTmeDisplay == $dbDateAndTime) {
-                            $dateTmeDisplay = "unavailable";
-                        }
-                        
-                       
+            if ($numrows != 0) {
+                            $dbDateAndTime = $numrows['dateAndTime'];
 
-                    if ($dateTmeDisplay == "unavailable") {
+               }
+
+                if ($dbDateAndTime == $dateTmeDisplay) {
+                   
+  
                 ?>
-                                            <option value="<?php echo $dateTmeDisplay; ?>" disabled><?php echo $dateTmeDisplay; ?></option>
+                                            <option value="unavailable" disabled>unavailable</option>
                                         <?php } else { ?>
                                             <option value="<?php echo $dateTmeDisplay; ?>"><?php
                                 echo $dateTmeDisplay;
                             }
-                        }
+  
                     }
+            }
                                 ?></option>
                             </select>
                         </td>
