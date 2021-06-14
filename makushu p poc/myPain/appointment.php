@@ -96,7 +96,7 @@
                     $dateTmeDisplay = $days . $timeDisplay;
 
 
-
+//double booking prevention
    $query = $mysqli->query("SELECT * FROM book WHERE dateAndTime='$dateTmeDisplay'") or
                     die($mysqli->error);
 

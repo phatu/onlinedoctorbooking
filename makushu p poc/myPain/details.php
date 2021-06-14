@@ -26,11 +26,6 @@
         session_start();
         $sess_user = $_SESSION['sess_user'];
 
-        //function to ask user if they want to delete an appointment
-        function confirmdelete() {
-            confirm("Are you sure you want to delete?");
-        }
-
         //getting data from register database
         $query = $mysqli->query("SELECT * FROM register WHERE cell = '$sess_user'") or
                 die($mysqli->error);
@@ -49,7 +44,7 @@
         <br/>
 
         <!-- form that displays patient bookings -->
-        <form method='POST' action='cancelAppointment.php' onsubmit='confirmdelete()'>
+        <form method='POST' action='cancelAppointment.php'>
             <table align="center" id="show">
                 <tr>              
                     <th>DATE AND TIME</th>
