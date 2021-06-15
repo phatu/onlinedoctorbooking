@@ -27,7 +27,6 @@
     <center>
         <h1>RESCHEDULE YOUR APPOINTMENT</h1>
 
-        <table align="center">
             <?php
             $dateAndTime = $_GET['dateAndTime'];
             $result = $mysqli->query("SELECT * from book where dateAndTime='$dateAndTime'") or
@@ -35,24 +34,22 @@
 
             $row = $result->fetch_array();
             $oldDateAndTime = $row['dateAndTime'];
+            $reason = $row['reason'];
             ?>
             <!--reschedule form for user -->	 
             <center>
                 <form action="" method="POST">
-                    <table align="center" id="reschedule">
 
-                        <tr>
-                            <td>Your scheduled date and time</td>
-                            <td><label name="oldDateAndTime"><?php echo $oldDateAndTime; ?></label></td>
-                        </tr>
+                                <h3>Reason</h3>
+                            <label><?php echo $reason ?></label><br/><br/>
+                        
+                       
+                            <h3>Old date and time</h3>
+                            <label name="oldDateAndTime"><?php echo $oldDateAndTime; ?></label><br/><br/>
+                        
 
-                        <tr>
-                            <td><b>NEW DATE AND TIME</b></td>
-                            <td>
-
-
-
-
+                            <h3>New date and time</h3>
+         
 
                                 <select name="newDateAndTime">
                                     <option value="selectdatetime">SELECT DATE AND TIME</option>
@@ -72,7 +69,6 @@
                                             $numrows = $query->fetch_array();
 
                                             $dbDateAndTime = $numrows['dateAndTime'];
-                                            $reason = $numrows['reason'];
 
                                             if ($dateTimeDisplay == $dbDateAndTime) {
                                                 $dateTimeDisplay = "unavailable";
@@ -89,24 +85,18 @@
                                             }
                                         }
                                         ?></option>
-                                </select>
+                                </select><br/><br/>
 
-                            </td>
-                        </tr>
+                            
+                        
 
-                        <tr><td>REASON</td>
-                            <td><label><?php echo $reason ?></label></td>
-                        </tr>
 
-                        <tr><td colspan="2" align="center"><p class="button-style"><input type="submit" title="Click To Reschedule"  name="reschedule" value="RESCHEDULE APPOINTMENT" align="center"/></p></td></tr>
+                                <p class="button-style"><input type="submit" title="Click To Reschedule"  name="reschedule" value="RESCHEDULE" align="center" class="btn btn-dark"/></p>
 
-                    </table>
                 </form>
 
 
                
-                </body>
-                </html>
 
                 <?php
                 if (isset($_POST['reschedule'])) {

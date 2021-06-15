@@ -22,11 +22,11 @@
 
             //validating user input
             if (!preg_match("/^[a-zA-Z]*$/", $fname) || !preg_match("/^[a-zA-Z]*$/", $lname)) {
-                echo "<script>alert('Only letters are allowed for first name and last name')</script>";
+                echo "<script>alert('Only letters are allowed for first name and last name');window.location='index.php';</script>";
             } else if (!preg_match("/^[0][1-9]\d{8}$/", $cell)) {
-                echo "<script>alert('Please enter a unique, valid cell number of digits only')</script>";
+                echo "<script>alert('Please enter a unique, valid cell number of digits only');window.location='index.php';</script>";
             } else if (!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $password)) {
-                echo "<script>alert('Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit')</script>";
+                echo "<script>alert('Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit');window.location='index.php';</script>";
             } else {
 
 
@@ -34,7 +34,12 @@
                         die($mysqli->error);
 
 
+                 if ($mysqli) {
+
                 echo "<script>alert('You have been registered. You may now LOGIN ');window.location='index.php';</script>";
+                    } else {
+                        echo "<script>alert('Your appointment has not been rescheduled. Please try again.');window.location='index.php';</script>";
+                    }
             }
         }
 

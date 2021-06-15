@@ -25,9 +25,7 @@
         include 'db.php';
         ?>
 
-    <center>
 
-        <table align="center">
             <?php
             $dateAndTime = $_GET['dateAndTime'];
             $result = $mysqli->query("SELECT * from book where dateAndTime='$dateAndTime'") or
@@ -38,64 +36,61 @@
             $reason = $row['reason'];
             $name = $row['name'];
             ?>
-            <center>
-                                <h1><?php  echo $name; ?>'s file</h1>
-                                
-                                
-                                 <!-- table that displays patient bookings -->
-            <table align="center" id="show">
-                <tr>    
-                    <th>DATE AND TIME</th>
-                    <th>REASON FOR APPOINTMENT</th>
-                    <th>DIAGNOSIS</th>
-                </tr>
+        
+             <center><h1><?php echo $name; ?>'s file</h1></center>
 
-                <?php
-                $result = $mysqli->query("SELECT * FROM book where name='$name'") or die($mysql->error);
-                 
-            
-                while ($display = $result->fetch_assoc()):
-                    $dateAndTime = $display['dateAndTime'];
-                    $reason = $display['reason'];
-                    $diagnosis = $display['diagnosis'];
-                    
-                    ?>
-                    <tr>
-                            <td> <?php echo $dateAndTime; ?> </td>
-                        <td> <?php echo $reason; ?> </td>
-                        <td> <?php echo $diagnosis; ?> </td>  
-                    </tr>            
 
-                     
+                <!-- table that displays patient details -->
+                <table align="center" id="show">
+                    <tr>    
+                        <th>DATE AND TIME</th>
+                        <th>REASON FOR APPOINTMENT</th>
+                        <th>DIAGNOSIS</th>
+                    </tr>
 
                     <?php
-                        
+                    $result = $mysqli->query("SELECT * FROM book where name='$name'") or die($mysql->error);
+
+
+                    while ($display = $result->fetch_assoc()):
+                        $dateAndTime = $display['dateAndTime'];
+                        $reason = $display['reason'];
+                        $diagnosis = $display['diagnosis'];
+                        ?>
+                        <tr>
+                            <td height=34px> <?php echo $dateAndTime; ?> </td>
+                            <td> <?php echo $reason; ?> </td>
+                            <td> <?php echo $diagnosis; ?> </td>  
+                        </tr>            
+
+
+
+                        <?php
                     endwhile;
                     ?>
-                </tr>  					
-            </table>
-                      </center>            
-                                 
-                                 <div class="container fixed-bottom">
-                    <nav class="navbar navbar-dark bg-dark">
+                     					
+                </table>
+
+            <div class="container fixed-bottom">
+                <nav class="navbar navbar-dark bg-dark">
 
 
-                        <div class="btn-group dropup">
-                            <a href="doctor.php">BACK TO PATIENTS</a>
+                    <div class="btn-group dropup">
+                        <a href="doctor.php">BACK TO PATIENTS</a>
 
 
-                        </div>
+                    </div>
 
-                        <div class="btn-group dropup">
-                            <a href="index.php">LOGOUT</a>
+                    <div class="btn-group dropup">
+                        <a href="index.php">LOGOUT</a>
 
-                        </div>
-
-
-                    </nav>  
-                </div>
+                    </div>
 
 
-            
-   </body>
-    
+                </nav>  
+            </div>
+
+
+
+    </body>
+</html>

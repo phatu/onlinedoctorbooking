@@ -83,6 +83,8 @@ input:checked + .slider:before {
             session_start();
             $sess_user = $_SESSION['sess_user'];
             ?>           
+        
+    <center><h1>HERE ARE YOUR PATIENTS</h1></center>
             <!-- table that displays patient bookings -->
             <table align="center" id="show">
                 <tr>    
@@ -103,7 +105,7 @@ input:checked + .slider:before {
                     $reason = $display['reason'];
                     ?>
                     <tr>
-                            <td> <?php echo $dateTimeDisplay; ?> </td>
+                         <td> <?php echo $dateTimeDisplay; ?> </td>
                         <td> <?php echo $display['reason']; ?> </td>
                         <td> <?php echo $display['name']; ?> </td>  
                         <td>

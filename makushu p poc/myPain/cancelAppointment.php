@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
+        
+        
     </head>
     <body>
         <?php
@@ -20,15 +23,13 @@
         session_start();
         $sess_user = $_SESSION['sess_user'];
 
-        // if ($_SESSION['user']) {
         //page with database basics included
         include 'db.php';
         ?>
 
     <center>
-        <h1>DELETING THE FOLLOWING APPOINTMENT</h1>
+        <h1>DELETE YOUR APPOINTMENT</h1>
 
-            <table align="center">
                 <?php
                 $dateAndTime = $_GET['dateAndTime'];
                 $result = $mysqli->query("SELECT * from book where dateAndTime='$dateAndTime'") or
@@ -40,25 +41,23 @@
                 ?>
                 <!--reschedule form for user -->	 
                     <form action="" method="POST">
-                        <table align="center" id="cancel">
 
-                            <tr>
-                                <td>Your scheduled date and time</td>
-                                <td><label name="dateAndTime"><?php echo $dateAndTime;   ?></label></td>
-                            </tr>
+                         <h3>Reason</h3>
+                            <label><?php echo $reason ?></label><br/><br/>
+                        
+                            
+                            <h3>Date and time</h3>
+                                <label name="dateAndTime"><?php echo $dateAndTime;   ?></label><br/><br/>
+                            
 
-                            <tr><td>REASON FOR APPOINTMENT</td>
-                                <td><label><?php echo $reason ?></label></td>
-                            </tr>
+                            
+                            
 
-                            <tr><td colspan="2" align="center"><p class="button-style"><input type="submit" title="Click To Delete"  name="delete" value="DELETE APPOINTMENT" align="center"/></p></td></tr>
+                            <p class="button-style"><input type="submit" title="Click To Delete"  name="delete" value="DELETE" align="center" class="btn btn-dark"/></p>
 
-                        </table>
                     </form>
 
-                    </body>
-                    </html>
-
+                  
 
                     <?php
                     if (isset($_POST['delete'])) {

@@ -13,12 +13,12 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+        <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
 
-</head>
+    </head>
 
-<body>
-    <?php
+    <body>
+        <?php
         //page with database basics included
         include 'db.php';
 
@@ -32,57 +32,52 @@
         $numrows = $query->fetch_array();
         $reason = $numrows['reason'];
         $startDateAndTime = $numrows['dateAndTime'];
-        $endDateAndTime = date( "l jS F Y H:i", strtotime($startDateAndTime)+(60*30) );
+        $endDateAndTime = date("l jS F Y H:i", strtotime($startDateAndTime) + (60 * 30));
+        ?>
 
-        
-        
-
-       
-?>
-    
-<center>
-	<div id="wrapper">
-		<h1>SAVE YOUR APPOINTMENT</h1>
-		<div title="Add to Calendar" class="addeventatc">
-			Add to Calendar
-			<span class="start"><?php echo $startDateAndTime; ?></span>
-			<span class="end"><?php echo $endDateAndTime; ?></span>
-			<span class="timezone">Africa/Johannesburg</span>
-			<span class="title"><?php echo $reason; ?></span>
-			<span class="description">Your appointment with Dr. Fix MyPain</span>
-			<span class="location">Carlton Centre</span>
-			<span class="organizer">Phatutshedzo Makushu</span>
-			<span class="organizer_email">phatumakushu@gmail.com</span>
-			<span class="all_day_event">false</span>
-		</div>
-	</div>
-    
-               
-
-
-            
-            
-            <div class="container fixed-bottom">
-                <nav class="navbar navbar-dark bg-dark">
-
-
-                    <div class="btn-group dropup">
-                        <a href="details.php">BACK TO DETAILS</a>
-
-
-                    </div>
-
-                    <div class="btn-group dropup">
-                        <a href="index.php">LOGOUT</a>
-
-                    </div>
-
-
-                </nav>  
+    <center>
+        <div id="wrapper">
+            <h1>SAVE YOUR APPOINTMENT</h1>
+            <div title="Add to Calendar" class="addeventatc">
+                Add to Calendar
+                <span class="start"><?php echo $startDateAndTime; ?></span>
+                <span class="end"><?php echo $endDateAndTime; ?></span>
+                <span class="timezone">Africa/Johannesburg</span>
+                <span class="title"><?php echo $reason; ?></span>
+                <span class="description">Your appointment with Dr. Fix MyPain</span>
+                <span class="location">Carlton Centre</span>
+                <span class="organizer">Phatutshedzo Makushu</span>
+                <span class="organizer_email">phatumakushu@gmail.com</span>
+                <span class="all_day_event">false</span>
             </div>
+        </div>
 
-    
-</center>
+
+
+
+
+
+        <div class="container fixed-bottom">
+            <nav class="navbar navbar-dark bg-dark">
+
+
+                <div class="btn-group dropup">
+                    <a href="details.php">BACK TO DETAILS</a>
+
+
+                </div>
+
+                <div class="btn-group dropup">
+                    <a href="index.php">LOGOUT</a>
+
+                </div>
+
+
+            </nav>  
+        </div>
+
+
+    </center>
 
 
 </body>

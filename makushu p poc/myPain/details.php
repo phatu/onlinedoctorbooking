@@ -36,6 +36,22 @@
 
         //user name and appointments displayed
         echo 'Good day ' . $fname;
+
+
+        $sql = "SELECT * FROM book WHERE cell='$sess_user'";
+        if ($result = mysqli_query($mysqli,$sql)) {
+            $rowcount = mysqli_num_rows($result);
+        }
+
+         if($rowcount == 0) {  
+             ?>
+             
+            <h2>Your appointments will be displayed here</h2>
+                     
+          <?php
+          
+         } else {
+             
         ?>
 
         <br/>
@@ -54,12 +70,14 @@
                 </tr>
 
                 <?php
-                $result = $mysqli->query("SELECT * FROM book WHERE cell='$sess_user'") or die($mysql->error);
+                
+                
+         $result = $mysqli->query("SELECT * FROM book WHERE cell='$sess_user'") or die($mysql->error);
 
                 while ($display = $result->fetch_assoc()):
                     ?>
                     <tr>
-                        <td> <?php echo $display['dateAndTime']; ?> </td>
+                        <td height=34px> <?php echo $display['dateAndTime']; ?> </td>
                         <td> <?php echo $display['reason']; ?> </td>                
                         <?php echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</a>
                         <?php echo "<td><a href='cancelAppointment.php?dateAndTime={$display['dateAndTime']}'>"; ?>DELETE</a>
@@ -70,7 +88,7 @@
                 </tr>  					
             </table>
         </form>
-
+ <?php } ?> 
 
 
 

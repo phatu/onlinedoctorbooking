@@ -18,8 +18,8 @@
     <body>
 
 
-      
-     
+
+
 
 
 
@@ -147,8 +147,8 @@
             </div>
         </div>
 
-        
-        
+
+
         <!--doctor login Modal -->
         <div id="doctorLogin" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -193,5 +193,5 @@
 
 
 
-</body>
+    </body>
 </html>
