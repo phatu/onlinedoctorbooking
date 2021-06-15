@@ -49,7 +49,7 @@
 			<span class="end"><?php echo $endDateAndTime; ?></span>
 			<span class="timezone">Africa/Johannesburg</span>
 			<span class="title"><?php echo $reason; ?></span>
-			<span class="description">Your appointment with Doctor Fix It</span>
+			<span class="description">Your appointment with Dr. Fix MyPain</span>
 			<span class="location">Carlton Centre</span>
 			<span class="organizer">Phatutshedzo Makushu</span>
 			<span class="organizer_email">phatumakushu@gmail.com</span>

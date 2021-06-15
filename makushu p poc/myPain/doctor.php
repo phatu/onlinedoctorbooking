@@ -83,14 +83,15 @@ input:checked + .slider:before {
             session_start();
             $sess_user = $_SESSION['sess_user'];
             ?>           
-            <!-- form that displays patient bookings -->
+            <!-- table that displays patient bookings -->
             <table align="center" id="show">
                 <tr>    
                     <th>DATE AND TIME</th>
                     <th>REASON FOR APPOINTMENT</th>
                     <th>PATIENT</th>
                     <th>SEEN</th>
-                    <th>FILES</th>
+                    <th style="padding-right: 40px">DIAGNOSIS</th>
+                    <th style="padding-right: 40px">FILES</th>
                 </tr>
 
                 <?php
@@ -99,6 +100,7 @@ input:checked + .slider:before {
             
                 while ($display = $result->fetch_assoc()):
                     $dateTimeDisplay = $display['dateAndTime'];
+                    $reason = $display['reason'];
                     ?>
                     <tr>
                             <td> <?php echo $dateTimeDisplay; ?> </td>
@@ -110,14 +112,17 @@ input:checked + .slider:before {
                           <span class="slider"></span>
                         </label>
                      </td>                  
-                               
+
+                     <td> <?php echo "<a href='files.php?dateAndTime={$display['dateAndTime']}'>"; ?>WRITE</a></td>
+                     
+                     <td> <?php echo "<a href='viewPatient.php?dateAndTime={$display['dateAndTime']}'>"; ?>VIEW</a></td>
+
                     <?php
                         
                     endwhile;
                     ?>
                 </tr>  					
             </table>
-        </form>
         
         
         <div class="container fixed-bottom">

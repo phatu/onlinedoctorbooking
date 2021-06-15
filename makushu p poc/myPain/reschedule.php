@@ -20,7 +20,6 @@
         session_start();
         $sess_user = $_SESSION['sess_user'];
 
-        // if ($_SESSION['user']) {
         //page with database basics included
         include 'db.php';
         ?>
