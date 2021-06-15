@@ -51,41 +51,51 @@
                             <h3>New date and time</h3>
          
 
-                                <select name="newDateAndTime">
-                                    <option value="selectdatetime">SELECT DATE AND TIME</option>
-                                    <?php
-                                    for ($count = 0; $count < 15; $count++) {
-                                        $days = date('l jS F Y ', strtotime($count . 'days'));
-                                        $startTime = strtotime('09:00');
+                               <select name="dateAndTime">
+                            <option value="selectdatetime">SELECT DATE AND TIME</option>
+                            
+                            
+                    <?php
+                    $result = $mysqli->query("SELECT * FROM book") or die($mysql->error);
 
-                                        for ($a = 0; $a < 451; $a += 30) {
-                                            $timeDisplay = date('H:i', strtotime($a . 'minutes', $startTime));
-                                            $dateTimeDisplay = $days . $timeDisplay;
+                    for ($count = 0; $count < 15; $count++) {
+                        $days = date('l jS F Y ', strtotime($count . 'days'));
+                        $startTime = strtotime('09:00');
 
-
-
-                                            $query = $mysqli->query("SELECT * FROM book") or
-                                                    die($mysqli->error);
-                                            $numrows = $query->fetch_array();
-
-                                            $dbDateAndTime = $numrows['dateAndTime'];
-
-                                            if ($dateTimeDisplay == $dbDateAndTime) {
-                                                $dateTimeDisplay = "unavailable";
-                                            }
+                        for ($a = 0; $a < 451; $a += 30) {
+                            $timeDisplay = date('H:i', strtotime($a . 'minutes', $startTime));
+                            $dateTmeDisplay = $days . $timeDisplay;
 
 
-                                            if ($dateTimeDisplay == "unavailable") {
-                                                ?>
-                                                <option value="<?php echo $dateTimeDisplay; ?>" disabled><?php echo $dateTimeDisplay; ?></option>
-                                            <?php } else { ?>
-                                                <option value="<?php echo $dateTimeDisplay; ?>"><?php
-                                                    echo $dateTimeDisplay;
-                                                }
-                                            }
-                                        }
-                                        ?></option>
-                                </select><br/><br/>
+                    //double booking prevention and if time has passed, slot is unavailable
+                            $query = $mysqli->query("SELECT * FROM book WHERE dateAndTime='$dateTmeDisplay'") or
+                                    die($mysqli->error);
+                            
+                           $display = $query->fetch_array();
+
+
+                                $dbDateAndTime = $display['dateAndTime'];
+                            
+
+                            
+                           if ($dbDateAndTime == $dateTmeDisplay || time() >= strtotime($dateTmeDisplay)) {
+
+                                        
+                            ?>
+                                   <option value="unavailable" disabled>unavailable</option>
+                                    <?php } else { ?>
+                                        <option value="<?php echo $dateTmeDisplay; ?>">
+                                            <?php   echo $dateTmeDisplay;
+                                    }
+                        
+                            
+                          ?>
+                             </option>
+                             <?php
+                            
+                    }}
+                    ?>
+                        </select><br/><br/>
 
                             
                         
