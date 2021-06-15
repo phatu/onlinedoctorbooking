@@ -43,7 +43,6 @@
                     die($mysqli->error);
 
             $row = $result->fetch_array();
-            $dateAndTime = $row['dateAndTime'];
             $reason = $row['reason'];
             $name = $row['name'];
             ?>

@@ -89,7 +89,7 @@ input:checked + .slider:before {
             <table align="center" id="show">
                 <tr>    
                     <th>DATE AND TIME</th>
-                    <th>REASON FOR APPOINTMENT</th>
+                    <th>REASON</th>
                     <th>PATIENT</th>
                     <th>SEEN</th>
                     <th style="padding-right: 40px">DIAGNOSIS</th>

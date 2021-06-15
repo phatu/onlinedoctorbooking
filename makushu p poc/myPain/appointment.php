@@ -97,29 +97,31 @@
                     //double booking prevention and if time has passed, slot is unavailable
                             $query = $mysqli->query("SELECT * FROM book WHERE dateAndTime='$dateTmeDisplay'") or
                                     die($mysqli->error);
-
-                            $numrows = $query->fetch_array();
-
-                            if ($numrows != 0) {
-                                $dbDateAndTime = $numrows['dateAndTime'];
-                            }
+                            
+                           $display = $query->fetch_array();
 
 
-                            $today = date('l jS F Y ');
-                            $timeRightNow = date('H:i');
+                                $dbDateAndTime = $display['dateAndTime'];
+                            
 
-                            if ($dbDateAndTime == $dateTmeDisplay || ($today == $days && $timeRightNow >= $timeDisplay)) {
+                            
+                           if ($dbDateAndTime == $dateTmeDisplay || time() >= strtotime($dateTmeDisplay)) {
 
-                                $dateTmeDisplay = $days . $timeDisplay;
+                                        
                             ?>
-                                        <option value="unavailable" disabled>unavailable</option>
+                                   <option value="unavailable" disabled>unavailable</option>
                                     <?php } else { ?>
-                                        <option value="<?php echo $dateTmeDisplay; ?>"><?php
-                                        echo $dateTmeDisplay;
+                                        <option value="<?php echo $dateTmeDisplay; ?>">
+                                            <?php   echo $dateTmeDisplay;
                                     }
-                                }
-                            }
-                            ?></option>
+                        
+                            
+                          ?>
+                             </option>
+                             <?php
+                            
+                    }}
+                    ?>
                         </select><br/><br/>
                     
                 

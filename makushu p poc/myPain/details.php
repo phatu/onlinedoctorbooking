@@ -64,7 +64,7 @@
             <table align="center" id="show">
                 <tr>              
                     <th>DATE AND TIME</th>
-                    <th>REASON FOR APPOINTMENT</th>
+                    <th>REASON</th>
                     <th>RESCHEDULE APPOINTMENT</th>
                     <th style="padding-left: 20px">DELETE APPOINTMENT</th>
                 </tr>
@@ -78,11 +78,40 @@
                     ?>
                     <tr>
                         <td height=34px> <?php echo $display['dateAndTime']; ?> </td>
-                        <td> <?php echo $display['reason']; ?> </td>                
-                        <?php echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</a>
-                        <?php echo "<td><a href='cancelAppointment.php?dateAndTime={$display['dateAndTime']}'>"; ?>DELETE</a>
+                        <td> <?php echo $display['reason']; ?> </td>    
+                        
+                        
+                        <?php 
+                        
+
+                            if (time() <= strtotime($display['dateAndTime'])) 
+                        {
+
+                        
+                                echo "<td><a href='reschedule.php?dateAndTime={$display['dateAndTime']}'>"; ?>RESCHEDULE</td></a>
+                        
+                        
+                     <?php   } else { 
+                        
+                        ?>
+                        
+                        <td>RESCHEDULE</td>
+
+                      <?php  }  
+                      
+                         if (time() <= strtotime($display['dateAndTime'])) {
+                           ?>
+                        
+                        <td><?php echo "<a href='cancelAppointment.php?dateAndTime={$display['dateAndTime']}'>"; ?>DELETE</a></td>
 
                         <?php
+                         } else {
+                             
+                             ?>
+                                                <td>DELETE</td>
+                          
+                                                <?PHP
+                         }
                     endwhile;
                     ?>
                 </tr>  					
