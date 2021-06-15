@@ -81,7 +81,7 @@
             <!--user appointment form-->
             <form action="" method="POST">
                 <table id="appointment">
-                    <tr><td><h2>PLEASE DO YOUR BOOKING HERE</h2></td></tr>
+                    <tr><td><h1>MAKE YOUR APPOINTMENT</h1</td></tr>
                     <tr><td><h3>DATE AND TIME</h3></td></tr> 
                     <tr>
                         <td>

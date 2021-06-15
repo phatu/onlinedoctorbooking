@@ -5,8 +5,12 @@
         <group>
             <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/index.php</file>
             <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/appointment.php</file>
+            <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/reschedule.php</file>
+            <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/cancelAppointment.php</file>
             <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/details.php</file>
+            <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/calendar.php</file>
             <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/doctor.php</file>
+            <file>file:/C:/xampp/htdocs/onlinedoctorbooking/makushu%20p%20poc/myPain/db.php</file>
         </group>
     </open-files>
 </project-private>
